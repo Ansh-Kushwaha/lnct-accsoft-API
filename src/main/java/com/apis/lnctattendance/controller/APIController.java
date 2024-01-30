@@ -24,7 +24,8 @@ public class APIController {
         if (username.isEmpty() && password.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Attendance not found!");
         } else {
-            return apiService.getOverallAttendance(username, password);
+            return apiService.getOverallAttendance(username, password)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Attendance not found!"));
         }
     }
 
